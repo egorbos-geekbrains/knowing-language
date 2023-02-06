@@ -25,6 +25,22 @@ int[] GetThirdPowerNumbersTable(int number)
     return numbers;
 }
 
+// Дополнительная задача
+int GetMaxBerriesCount(int[] bushes)
+{
+    var maxBerriesCount = 0;
+    for (var i = 0; i <= bushes.Length - 3; i++)
+    {
+        var count = bushes[i] + bushes[i + 1] + bushes[i + 2];
+        if (count > maxBerriesCount)
+        {
+            maxBerriesCount = count;
+        }
+    }
+    return maxBerriesCount;
+}
+
+//
 Console.Clear();
 Console.WriteLine("Задача № 19");
 Console.Write("Введите пятизначное число: ");
@@ -38,6 +54,7 @@ while (taskNineteenNum < 10000 || taskNineteenNum > 99999)
 
 Console.WriteLine(IsNumberPalindrome(taskNineteenNum) ? "Да\n" : "Нет\n");
 
+//
 Console.WriteLine("Задача № 21");
 Console.WriteLine("Введите координаты точки A.");
 Console.Write("Координата X: ");
@@ -57,6 +74,7 @@ var z2 = Convert.ToDouble(Console.ReadLine());
 var distance = Calc3dDistance(x1, y1, z1, x2, y2, z2);
 Console.WriteLine($"{Math.Round(distance, 2)}\n");
 
+//
 Console.WriteLine("Задача № 23");
 Console.Write("Введите число: ");
 var taskTwentyThreeNum = Convert.ToInt32(Console.ReadLine());
@@ -69,3 +87,29 @@ while (taskTwentyThreeNum < 1)
 
 var numbers = GetThirdPowerNumbersTable(taskTwentyThreeNum);
 Console.WriteLine(string.Join(", ", numbers));
+
+//
+Console.WriteLine("\nДополнительная задача");
+Console.Write("Введите количество кустов: ");
+var bushCount = Convert.ToInt32(Console.ReadLine());
+
+while (bushCount < 3 || bushCount > 1000)
+{
+    Console.Write("Количество должно быть в диапазоне [3; 1000]! Введите количество кустов: ");
+    bushCount = Convert.ToInt32(Console.ReadLine());
+}
+
+var bushes = new int[bushCount];
+for (var i = 0; i < bushCount; i++)
+{
+    Console.Write($"Введите количество ягод растущих на {i + 1} кусте: ");
+    bushes[i] = Convert.ToInt32(Console.ReadLine());
+    while (bushes[i] < 1)
+    {
+        Console.Write("Количество должно быть в диапазоне [1; 1000]! Введите количество ягод: ");
+        bushes[i] = Convert.ToInt32(Console.ReadLine());
+    }
+}
+
+var maxBerriesCount = GetMaxBerriesCount(bushes);
+Console.WriteLine(maxBerriesCount);
