@@ -14,6 +14,17 @@ double Calc3dDistance(
     return Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 -y2, 2) + Math.Pow(z1 - z2, 2));
 }
 
+// Задача № 23
+int[] GetThirdPowerNumbersTable(int number)
+{
+    var numbers = new int[number];
+    for (var i = 1; i <= number; i++)
+    {
+        numbers[i - 1] = (int) Math.Pow(i, 3);
+    }
+    return numbers;
+}
+
 Console.Clear();
 Console.WriteLine("Задача № 19");
 Console.Write("Введите пятизначное число: ");
@@ -35,7 +46,7 @@ Console.Write("Координата Y: ");
 var y1 = Convert.ToDouble(Console.ReadLine());
 Console.Write("Координата Z: ");
 var z1 = Convert.ToDouble(Console.ReadLine());
-Console.WriteLine("Введите координаты точки B.");
+Console.WriteLine("\nВведите координаты точки B.");
 Console.Write("Координата X: ");
 var x2 = Convert.ToDouble(Console.ReadLine());
 Console.Write("Координата Y: ");
@@ -45,3 +56,16 @@ var z2 = Convert.ToDouble(Console.ReadLine());
 
 var distance = Calc3dDistance(x1, y1, z1, x2, y2, z2);
 Console.WriteLine($"{Math.Round(distance, 2)}\n");
+
+Console.WriteLine("Задача № 23");
+Console.Write("Введите число: ");
+var taskTwentyThreeNum = Convert.ToInt32(Console.ReadLine());
+
+while (taskTwentyThreeNum < 1)
+{
+    Console.Write("Число должно быть больше нуля! Введите число: ");
+    taskTwentyThreeNum = Convert.ToInt32(Console.ReadLine());
+}
+
+var numbers = GetThirdPowerNumbersTable(taskTwentyThreeNum);
+Console.WriteLine(string.Join(", ", numbers));
