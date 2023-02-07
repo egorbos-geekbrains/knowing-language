@@ -26,10 +26,8 @@ int GetDigitsSumm(int number)
 // Задача № 29
 int GetPupilPosition(int[] pupils, int pupilHeight)
 {
-    if (pupils[0] < pupilHeight)
-    {
-        return 1;
-    }
+    if (pupils[0] < pupilHeight) return 1;
+
     var prevHeight = pupils[0];
     for (var i = 1; i < pupils.Length; i++)
     {
@@ -68,6 +66,36 @@ int[] Supershift(int[] array, int level)
         index += 1;
     }
     return newArray;
+}
+
+// Гипотеза Гольдбаха
+int[] GoldbachDecomposeNumber(int number)
+{
+    for (var i = 2; i < number; i++)
+    {
+        var secondNumber = number - i;
+        if (IsNumberPrime(i) && IsNumberPrime(secondNumber))
+        {
+            return new[] { i, secondNumber };
+        }
+    }
+    return Array.Empty<int>();
+}
+
+bool IsNumberPrime(int number)
+{
+    if (number <= 1) return false;
+    if (number == 2) return true;
+    if (number % 2 == 0) return false;
+
+    var bound = (int) Math.Floor(Math.Sqrt(number));
+          
+    for (int i = 3; i <= bound; i += 2)
+    {
+        if (number % i == 0) return false;
+    }
+    
+    return true;        
 }
 
 //
@@ -174,3 +202,17 @@ while (Math.Abs(shiftLevel) > 100000)
 
 var shiftedArray = Supershift(numbers, shiftLevel);
 Console.WriteLine(string.Join(" ", shiftedArray));
+
+//
+Console.WriteLine("\nГипотеза Гольдбаха");
+Console.Write("Введите число: ");
+var goldbachNumber = Convert.ToInt32(Console.ReadLine());
+
+while (goldbachNumber < 4 || goldbachNumber % 2 != 0)
+{
+    Console.Write("Значение должно являться чётным и быть больше трех! Введите число: ");
+    goldbachNumber = Convert.ToInt32(Console.ReadLine());
+}
+
+var decomposed = GoldbachDecomposeNumber(goldbachNumber);
+Console.WriteLine(string.Join(" ", decomposed));
