@@ -11,6 +11,18 @@ int Pow(int x, int y)
     return result;
 }
 
+// Задача № 27
+int GetDigitsSumm(int number)
+{
+    var result = 0;
+    while (number > 0)
+    {
+        result = result + (number % 10);
+        number = number / 10;
+    }
+    return result;
+}
+
 //
 Console.Clear();
 Console.WriteLine("Задача № 25");
@@ -26,3 +38,16 @@ while (taskTwentyFiveNumB == 0)
 }
 
 Console.WriteLine(Pow(taskTwentyFiveNumA, taskTwentyFiveNumB));
+
+//
+Console.WriteLine("Задача № 27");
+Console.Write("Введите число: ");
+var taskTwentySevenNum = Convert.ToInt32(Console.ReadLine());
+
+while (taskTwentySevenNum < 10)
+{
+    Console.Write("Число должно иметь более двух знаков! Введите число: ");
+    taskTwentySevenNum = Convert.ToInt32(Console.ReadLine());
+}
+
+Console.WriteLine(GetDigitsSumm(taskTwentySevenNum));
