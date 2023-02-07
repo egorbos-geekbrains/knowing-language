@@ -42,6 +42,34 @@ int GetPupilPosition(int[] pupils, int pupilHeight)
     return pupils.Length + 1;
 }
 
+// Суперсдвиг
+int[] Supershift(int[] array, int level)
+{
+    var newArray = new int[array.Length];
+    if (level < 0)
+    {
+        level *= (-1);
+        level %= array.Length;
+    }
+    else
+    {
+        level %= array.Length;
+        level = array.Length - level;
+    }
+    var index = 0;
+    for (var i = level; i < array.Length; i++)
+    {
+        newArray[index] = array[i];
+        index += 1;
+    }
+    for (var i = 0; i < level; i++)
+    {
+        newArray[index] = array[i];
+        index += 1;
+    }
+    return newArray;
+}
+
 //
 Console.Clear();
 Console.WriteLine("Задача № 25");
@@ -111,3 +139,38 @@ while (petyaHeight < 1)
 }
 
 Console.WriteLine(GetPupilPosition(pupils, petyaHeight));
+
+//
+Console.WriteLine("\nСуперсдвиг");
+Console.Write("Введите количество чисел: ");
+var numbersCount = Convert.ToInt32(Console.ReadLine());
+
+while (numbersCount < 1 || numbersCount > 100000)
+{
+    Console.Write("Количество должно быть в диапазоне [1; 100000]! Введите количество чисел: ");
+    numbersCount = Convert.ToInt32(Console.ReadLine());
+}
+
+var numbers = new int[numbersCount];
+for (var i = 0; i < numbersCount; i++)
+{
+    Console.Write($"Введите значение для числа № {i + 1}: ");
+    numbers[i] = Convert.ToInt32(Console.ReadLine());
+    while (Math.Abs(numbers[i]) > 100)
+    {
+        Console.Write("Значение должно быть в диапазоне [-100; 100]! Введите значение: ");
+        numbers[i] = Convert.ToInt32(Console.ReadLine());
+    }
+}
+
+Console.Write("Введите уровень сдвига: ");
+var shiftLevel = Convert.ToInt32(Console.ReadLine());
+
+while (Math.Abs(shiftLevel) > 100000)
+{
+    Console.Write("Значение должно быть в диапазоне [-100000; 100000]! Введите уровень сдвига: ");
+    numbersCount = Convert.ToInt32(Console.ReadLine());
+}
+
+var shiftedArray = Supershift(numbers, shiftLevel);
+Console.WriteLine(string.Join(" ", shiftedArray));
