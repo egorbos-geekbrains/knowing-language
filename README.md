@@ -7,3 +7,5 @@
 ## [**Урок 3. Базовые алгоритмы. Продолжение**](https://github.com/egorbos-geekbrains/knowing-language/tree/main/Lesson%203)
 
 ## [**Урок 4. Функции**](https://github.com/egorbos-geekbrains/knowing-language/tree/main/Lesson%204)
+
+## [**Урок 5. Функции и одномерные массивы**](https://github.com/egorbos-geekbrains/knowing-language/tree/main/Lesson%205)
