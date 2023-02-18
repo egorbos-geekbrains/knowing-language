@@ -23,6 +23,25 @@ int GetOddPositionItemsSumm(int[] array)
     return summ;
 }
 
+// Задача № 38
+double GetMaxMinItemsDifference(double[] array)
+{
+    var min = array[0];
+    var max = array[0];
+    for (var i = 0; i < array.Length; i++)
+    {
+        if (array[i] < min)
+        {
+            min = array[i];
+        }
+        else if (array[i] > max)
+        {
+            max = array[i];
+        }
+    }
+    return max - min;
+}
+
 //
 Console.Clear();
 var random = new Random();
@@ -48,3 +67,17 @@ for (var i = 0; i < arrayTaskThirtySix.Length; i++)
 Console.WriteLine($"[{string.Join(", ", arrayTaskThirtySix)}]");
 var oddPositionItemsSumm = GetOddPositionItemsSumm(arrayTaskThirtySix);
 Console.WriteLine($"Сумма элементов, стоящих на нечётных позициях: {oddPositionItemsSumm}");
+
+//
+Console.WriteLine("\nЗадача № 38");
+var arrayTaskThirtyEight = new double[5];
+var minArrayValue = 1;
+var maxArrayValue = 100;
+for (var i = 0; i < arrayTaskThirtyEight.Length; i++)
+{
+    var item = random.NextDouble() * (maxArrayValue - minArrayValue) + minArrayValue;
+    arrayTaskThirtyEight[i] = Math.Round(item, 2);
+}
+Console.WriteLine($"[{string.Join(", ", arrayTaskThirtyEight)}]");
+var maxMinDifference = GetMaxMinItemsDifference(arrayTaskThirtyEight);
+Console.WriteLine($"Разница между максимальным и минимальным элементами массива: {Math.Round(maxMinDifference, 2)}");
