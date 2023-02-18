@@ -81,3 +81,33 @@ for (var i = 0; i < arrayTaskThirtyEight.Length; i++)
 Console.WriteLine($"[{string.Join(", ", arrayTaskThirtyEight)}]");
 var maxMinDifference = GetMaxMinItemsDifference(arrayTaskThirtyEight);
 Console.WriteLine($"Разница между максимальным и минимальным элементами массива: {Math.Round(maxMinDifference, 2)}");
+
+//
+Console.WriteLine("\nДополнительная задача");
+var gradesCount = random.Next(1, 101);
+var gradesDates = new int[gradesCount];
+for (var i = 0; i < gradesDates.Length; i++)
+{
+    gradesDates[i] = random.Next(1, 32);
+}
+Console.WriteLine($"Количество оценок - {gradesCount}");
+Console.WriteLine($"Даты получения оценок - [{string.Join(" ", gradesDates)}]");
+var gradesSumm = .0;
+var threeGradeDates = "";
+var fourGradeDates = "";
+foreach (var item in gradesDates)
+{
+    if (item % 2 != 0)
+    {
+        gradesSumm += 3;
+        threeGradeDates += $"{item} ";
+    }
+    else
+    {
+        gradesSumm += 4;
+        fourGradeDates += $"{item} ";
+    }
+}
+Console.WriteLine($"Тройки   - [{threeGradeDates.TrimEnd()}]");
+Console.WriteLine($"Четвёрки - [{fourGradeDates.TrimEnd()}]");
+Console.WriteLine(gradesSumm / gradesCount >= 3.5 ? "YES" : "NO");
