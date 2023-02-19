@@ -35,8 +35,6 @@ string[] GetPermutes(string text)
 
 //
 Console.Clear();
-
-//
 Console.Write("\nЗадача № 41");
 var parsed = true;
 var parseResult = 0;
@@ -93,3 +91,20 @@ foreach (var item in permutes)
 {
     Console.WriteLine(item);
 }
+
+//
+Console.WriteLine("\nПлощадь треугольника");
+Console.Write("Введите координаты вершин треугольника (формат: x1 y1 x2 y2 x3 y3): ");
+var coordinates = Console.ReadLine()?.Split(' ').Select(e => double.Parse(e)).ToArray();
+while (coordinates is null || coordinates.Length < 6 || coordinates.Any(e => e > Math.Pow(10, 6)))
+{
+    Console.WriteLine("Количество координат должно быть не менее шести, значение каждой менее 10⁶.");
+    Console.Write("Введите координаты вершин треугольника (формат: x1 y1 x2 y2 x3 y3): ");
+    coordinates = Console.ReadLine()?.Split(' ').Select(e => double.Parse(e)).ToArray();
+}
+// S = 0.5 * Math.Abs((x2-x1)*(y3-y1)-(x3-x1)*(y2-y1))
+// x2 - 2  x1 - 0  y3 - 5  y1 - 1  x3 - 4  x1 - 0  y2 - 3  y1 - 1
+var triangleArea = 0.5 * Math
+    .Abs((coordinates[2] - coordinates[0]) * (coordinates[5] - coordinates[1])
+         - (coordinates[4] - coordinates[0]) * (coordinates[3] - coordinates[1]));
+Console.WriteLine($"Площадь треугольника: {Math.Round(triangleArea, 2)}");
