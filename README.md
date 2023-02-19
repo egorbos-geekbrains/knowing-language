@@ -9,3 +9,5 @@
 ## [**Урок 4. Функции**](https://github.com/egorbos-geekbrains/knowing-language/tree/main/Lesson%204)
 
 ## [**Урок 5. Функции и одномерные массивы**](https://github.com/egorbos-geekbrains/knowing-language/tree/main/Lesson%205)
+
+## [**Урок 6. Одномерные массивы. Продолжение**](https://github.com/egorbos-geekbrains/knowing-language/tree/main/Lesson%206)
