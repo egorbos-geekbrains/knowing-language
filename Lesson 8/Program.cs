@@ -136,6 +136,26 @@ int[,] MultiplyMatrices(int[,] first, int[,] second)
     return result;
 }
 
+// Задача № 61
+void PrintPascalTriangleRows(int rowsCount)
+{    
+    for (var rowNumber = 0; rowNumber < rowsCount; rowNumber++)
+    {
+        var number = 1;
+        for (var i = 0; i < rowsCount - rowNumber; i++)
+        {
+            Console.Write("   ");
+        }
+    
+        for (var element = 0; element <= rowNumber; element++)
+        {
+            Console.Write("   {0:D}  ", number);
+            number = number * (rowNumber - element) / (element + 1);
+        }
+        Console.WriteLine("\n");
+    }
+}
+
 //
 Console.Clear();
 var random = new Random();
@@ -172,6 +192,7 @@ var multiplResult = MultiplyMatrices(matrixTaskFiftyEightFirst, matrixTaskFiftyE
 Console.WriteLine("Результат перемножения массивов:");
 Print2DMatrix(multiplResult);
 
+//
 Console.WriteLine("\nЗадача № 60");
 var matrixTaskSixty = new int[2, 2, 2];
 var values = new int[matrixTaskSixty.GetLength(0) * matrixTaskSixty.GetLength(1) * matrixTaskSixty.GetLength(2)];
@@ -187,3 +208,14 @@ Input3DMatrix(
     }
 );
 Print3DMatrix(matrixTaskSixty);
+
+//
+Console.Write("\nЗадача № 61");
+var parsed = false;
+var triangleRowsCount = 0;
+while (!parsed)
+{
+    Console.Write($"\nВведите количество строк треугольника Паскаля:  ");
+    parsed = int.TryParse(Console.ReadLine(), out triangleRowsCount);
+}
+PrintPascalTriangleRows(triangleRowsCount);
