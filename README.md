@@ -13,3 +13,5 @@
 ## [**Урок 6. Одномерные массивы. Продолжение**](https://github.com/egorbos-geekbrains/knowing-language/tree/main/Lesson%206)
 
 ## [**Урок 7. Двумерные массивы**](https://github.com/egorbos-geekbrains/knowing-language/tree/main/Lesson%207)
+
+## [**Урок 8. Двумерные массивы. Продолжение**](https://github.com/egorbos-geekbrains/knowing-language/tree/main/Lesson%208)
