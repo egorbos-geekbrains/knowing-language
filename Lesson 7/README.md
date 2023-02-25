@@ -46,4 +46,4 @@
 
 > **Заполнение диагоналями**
 >
-> ![Задание](/diagonals_filling.jpg)
+> ![Задание](https://github.com/egorbos-geekbrains/knowing-language/blob/main/Lesson%207/diagonals_filling.jpg)
