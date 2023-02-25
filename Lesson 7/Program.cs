@@ -10,13 +10,13 @@ void InputMatrix<T>(T[,] matrix, Func<T> generator)
     }
 }
 
-void PrintMatrix<T>(T[,] matrix)
+void PrintMatrix<T>(T[,] matrix, string separator = " \t")
 {
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
-            Console.Write($"{matrix[i, j]} \t");
+            Console.Write($"{matrix[i, j]}{separator}");
         }
         Console.WriteLine();
     }
@@ -53,6 +53,25 @@ void TransposeMatrix<T>(T[,] matrix)
             matrix[rows - (i + 1), j] = tempValue;
         }
     }
+}
+
+// Миша и негатив
+int GetWrongPixelsCount(char[,] picture, char[,] negative)
+{
+    var count = 0;
+    var rows = picture.GetLength(0);
+    var columns = picture.GetLength(1);
+    for (var i = 0; i < rows; i++)
+    {
+        for (var j = 0; j < columns; j++)
+        {
+            if (picture[i, j] == negative[i, j])
+            {
+                count++;
+            }
+        }
+    }
+    return count;
 }
 
 //
@@ -97,7 +116,7 @@ var matrixTaskFiftyTwo = new int[3, 4];
 InputMatrix(matrixTaskFiftyTwo, () => random.Next(1, 10));
 PrintMatrix(matrixTaskFiftyTwo);
 var averageValues = CalculateColumnsAverage(matrixTaskFiftyTwo);
-Console.Write($"Среднее арифметическое каждого столбца: {string.Join("; ", averageValues)}");
+Console.WriteLine($"Среднее арифметическое каждого столбца: {string.Join("; ", averageValues)}");
 
 //
 Console.WriteLine("\nТранспонирование");
@@ -115,3 +134,23 @@ PrintMatrix(transpositionMatrix);
 TransposeMatrix(transpositionMatrix);
 Console.WriteLine("Транспонированная матрица:");
 PrintMatrix(transpositionMatrix);
+
+//
+Console.WriteLine("\nМиша и негатив");
+Console.Write("Введите размер матрицы: ");
+var michaelMatrixSize = Console.ReadLine()?.Split(" ").Select(x => int.Parse(x)).ToArray();
+while (michaelMatrixSize is null || michaelMatrixSize.Length < 2 || michaelMatrixSize.Any(e => e < 1 || e > 100))
+{
+    Console.Write("Введите размер матрицы: ");
+    michaelMatrixSize = Console.ReadLine()?.Split(" ").Select(x => int.Parse(x)).ToArray();
+}
+var michaelMatrix = new char[michaelMatrixSize[0], michaelMatrixSize[1]];
+InputMatrix(michaelMatrix, () => random.Next(2) == 0 ? 'B' : 'W');
+Console.WriteLine("Изображение:");
+PrintMatrix(michaelMatrix, "");
+var negativeMatrix = new char[michaelMatrixSize[0], michaelMatrixSize[1]];
+InputMatrix(negativeMatrix, () => random.Next(2) == 0 ? 'B' : 'W');
+Console.WriteLine("Негатив:");
+PrintMatrix(negativeMatrix, "");
+var wrongPixelsCount = GetWrongPixelsCount(michaelMatrix, negativeMatrix);
+Console.WriteLine($"Количество пикселей, сформированных неправильно: {wrongPixelsCount}");
