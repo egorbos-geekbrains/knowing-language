@@ -288,6 +288,7 @@
         //
         Console.WriteLine("\nЗадача № 60");
         var matrixTaskSixty = new int[2, 2, 2];
+        var valueIdx = 0;
         var values = new int[matrixTaskSixty.GetLength(0) * matrixTaskSixty.GetLength(1) * matrixTaskSixty.GetLength(2)];
         Fill3DMatrix(
             matrixTaskSixty, 
@@ -297,6 +298,7 @@
                 {
                     rnd = random.Next(10, 100);
                 }
+                values[valueIdx++] = rnd;
                 return rnd;
             }
         );
