@@ -77,6 +77,28 @@ int GetMinSummValueRowNumber(int[,] matrix)
     return rowNumber;
 }
 
+// Задача № 58
+int[,] MultiplyMatrices(int[,] first, int[,] second)
+{
+    var tempValue = 0;
+    var rowsCount = first.GetLength(0);
+    var columnsCount = first.GetLength(1);
+    var result = new int[rowsCount, columnsCount];
+    for (var i = 0; i < rowsCount; i++)
+    {
+        for (var j = 0; j < columnsCount; j++)
+        {
+            tempValue = 0;
+            for (int k = 0; k < columnsCount; k++)
+            {
+                tempValue += first[i, k] * second[k, j];
+            }
+            result[i, j] = tempValue;
+        }
+    }
+    return result;
+}
+
 //
 Console.Clear();
 var random = new Random();
@@ -91,9 +113,24 @@ SortMatrixByDescending(matrixTaskFiftyFour);
 Console.WriteLine("Массив после преобразования:");
 Print2DMatrix(matrixTaskFiftyFour);
 
+//
 Console.WriteLine("\nЗадача № 56");
 var matrixTaskFiftySix = new int[4, 3];
 Input2DMatrix(matrixTaskFiftySix, () => random.Next(1, 10));
 Print2DMatrix(matrixTaskFiftySix);
 var rowNumber = GetMinSummValueRowNumber(matrixTaskFiftySix);
 Console.WriteLine($"Номер строки с наименьшей суммой элементов: {rowNumber}");
+
+//
+Console.WriteLine("\nЗадача № 58");
+var matrixTaskFiftyEightFirst = new int[2, 2];
+Input2DMatrix(matrixTaskFiftyEightFirst, () => random.Next(1, 5));
+Console.WriteLine("Массив №1:");
+Print2DMatrix(matrixTaskFiftyEightFirst);
+var matrixTaskFiftyEightSecond = new int[2, 2];
+Input2DMatrix(matrixTaskFiftyEightSecond, () => random.Next(1, 5));
+Console.WriteLine("Массив №2:");
+Print2DMatrix(matrixTaskFiftyEightSecond);
+var multiplResult = MultiplyMatrices(matrixTaskFiftyEightFirst, matrixTaskFiftyEightSecond);
+Console.WriteLine("Результат перемножения массивов:");
+Print2DMatrix(multiplResult);
