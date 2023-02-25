@@ -75,7 +75,8 @@ int GetWrongPixelsCount(char[,] picture, char[,] negative)
 }
 
 // Заполнение диагоналями
-void DiagonalFillMatrix(int[,] matrix) {
+void DiagonalFillMatrix(int[,] matrix)
+{
     int rowsCount = matrix.GetLength(0);
     int columnsCount = matrix.GetLength(1);
     
@@ -87,11 +88,13 @@ void DiagonalFillMatrix(int[,] matrix) {
     int currentRow = 0;
     int currentColumn = 0;
 
-    for(int i = 0; i < rowsCount; i++) {
-        for(int j = 0; j < columnsCount; j++) {
+    for (int i = 0; i < rowsCount; i++)
+    {
+        for (int j = 0; j < columnsCount; j++)
+        {
             matrix[currentRow, currentColumn] = counter++;
 
-            if(currentRow == rowsCount - 1)
+            if (currentRow == rowsCount - 1)
             {
                 if (rowsCount < columnsCount && columnIndex < columnsCount - 1)
                 {
