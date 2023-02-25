@@ -28,6 +28,43 @@ void Print2DMatrix<T>(T[,] matrix, string separator = " \t")
     }
 }
 
+void Input3DMatrix<T>(T[,,] matrix, Func<T> generator)
+{
+    var rowsCount = matrix.GetLength(0);
+    var columnsCount = matrix.GetLength(1);
+    var layersCount = matrix.GetLength(2);
+
+    for (int i = 0; i < rowsCount; i++)
+    {
+        for (int j = 0; j < columnsCount; j++)
+        {
+            for (int k = 0; k < layersCount; k++)
+            {
+                matrix[i, j, k] = generator();
+            }
+        }
+    }
+}
+
+void Print3DMatrix<T>(T[,,] matrix)
+{
+    var rowsCount = matrix.GetLength(0);
+    var columnsCount = matrix.GetLength(1);
+    var layersCount = matrix.GetLength(2);
+
+    for (int i = 0; i < rowsCount; i++)
+    {
+        for (int j = 0; j < columnsCount; j++)
+        {
+            for (int k = 0; k < layersCount; k++)
+            {
+                Console.Write($"{matrix[i, j, k]}({i},{j},{k}) ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+
 // Задача № 54
 void SortMatrixByDescending(int[,] matrix)
 {
@@ -134,3 +171,19 @@ Print2DMatrix(matrixTaskFiftyEightSecond);
 var multiplResult = MultiplyMatrices(matrixTaskFiftyEightFirst, matrixTaskFiftyEightSecond);
 Console.WriteLine("Результат перемножения массивов:");
 Print2DMatrix(multiplResult);
+
+Console.WriteLine("\nЗадача № 60");
+var matrixTaskSixty = new int[2, 2, 2];
+var values = new int[matrixTaskSixty.GetLength(0) * matrixTaskSixty.GetLength(1) * matrixTaskSixty.GetLength(2)];
+Input3DMatrix(
+    matrixTaskSixty, 
+    () => {
+        var rnd = random.Next(10, 100);
+        while (values.Any(e => e == rnd))
+        {
+            rnd = random.Next(10, 100);
+        }
+        return rnd;
+    }
+);
+Print3DMatrix(matrixTaskSixty);
