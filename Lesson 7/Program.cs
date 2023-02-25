@@ -74,6 +74,58 @@ int GetWrongPixelsCount(char[,] picture, char[,] negative)
     return count;
 }
 
+// Заполнение диагоналями
+void DiagonalFillMatrix(int[,] matrix) {
+    int rowsCount = matrix.GetLength(0);
+    int columnsCount = matrix.GetLength(1);
+    
+    int counter = 0;
+
+    int rowIndex = 0;
+    int columnIndex = 0;
+    
+    int currentRow = 0;
+    int currentColumn = 0;
+
+    for(int i = 0; i < rowsCount; i++) {
+        for(int j = 0; j < columnsCount; j++) {
+            matrix[currentRow, currentColumn] = counter++;
+
+            if(currentRow == rowsCount - 1)
+            {
+                if (rowsCount < columnsCount && columnIndex < columnsCount - 1)
+                {
+                    currentRow = 0;
+                    currentColumn = ++columnIndex;
+                }
+                else
+                {
+                    currentRow = ++rowIndex;
+                    currentColumn = columnsCount - 1;
+                }
+            }            
+            else if (currentColumn == 0)
+            {
+                if (columnIndex < columnsCount - 1)
+                {
+                    currentRow = rowIndex;                        
+                    currentColumn = ++columnIndex;
+                }
+                else
+                {
+                    currentColumn = columnIndex;
+                    currentRow = ++rowIndex;
+                }
+            }
+            else
+            {
+                currentRow++;
+                currentColumn--;
+            }
+        }
+    }
+}
+
 //
 Console.Clear();
 var random = new Random();
@@ -154,3 +206,16 @@ Console.WriteLine("Негатив:");
 PrintMatrix(negativeMatrix, "");
 var wrongPixelsCount = GetWrongPixelsCount(michaelMatrix, negativeMatrix);
 Console.WriteLine($"Количество пикселей, сформированных неправильно: {wrongPixelsCount}");
+
+//
+Console.WriteLine("\nЗаполнение диагоналями");
+Console.Write("Введите размер матрицы: ");
+var diagonalsMatrixSize = Console.ReadLine()?.Split(" ").Select(x => int.Parse(x)).ToArray();
+while (diagonalsMatrixSize is null || diagonalsMatrixSize.Length < 2 || diagonalsMatrixSize.Any(e => e < 1))
+{
+    Console.Write("Введите размер матрицы: ");
+    diagonalsMatrixSize = Console.ReadLine()?.Split(" ").Select(x => int.Parse(x)).ToArray();
+}
+var diagonalsMatrix = new int[diagonalsMatrixSize[0], diagonalsMatrixSize[1]];
+DiagonalFillMatrix(diagonalsMatrix);
+PrintMatrix(diagonalsMatrix);
